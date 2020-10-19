@@ -289,3 +289,5 @@ const containers = document.getElementsByClassName('container'); // access all i
 containers[0].classList.add('d-none'); // remove the certain element from view on the web page
 console.log(containers);
 ```
+### ```'use strict';```
+'use strict' above the code in the file is used to make sure that all variables are declared. Throw error otherwise.
