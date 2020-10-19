@@ -1,19 +1,18 @@
 # JavaScript
 
-## Conspects 
+## Getting Started (Course №1)
 
 Attach js file to index.html file (at the bottom of the file):
 ```js script 
-<script src="./filename.js"></script>
+<script src="./filename.js"> </script>
 ```
 Pr simply put js code between
 ```js script 
 <scrip> </script>
 ```
+#### Access element in html code by id
 
-Utils:
-
-1. Create a function
+1. Create a function in ```utils```
 ```js script 
 function showMessage(message) {
     document.getElementById('message').textContent = message;
@@ -24,34 +23,33 @@ function showMessage(message) {
 <script src="./utils.js"></script>
 <script src="./home.js"></script>
 ```
-3. Write a message in home
+3. Write a message in ```home```
 ```js script 
 showMessage("Title...");
 ```
-4. Ad id to the element in index.html file. "GET A GRIP" will change to "Title..."
+4. Ad ```id``` to the element in index.html file. "GET A GRIP" will change to "Title..."
 ```js script 
  <h1 id="message" class="col-sm-12">GET A GRIP</h1>
  ```
+ 
+#### JavaScript is Case Sensitive !
 
-
-JavaScript is Case Sensitive !
-
-Declaring a variable:
+#### Declaring a variable:
 ```js script 
 let total = 144;
 ```
-Declaring multiple variables:
+#### Declaring multiple variables:
 ```js script 
 let welcome = 'Welcome',
     available = true,
     price = 144;
 ```
 
-Declaring constant variable - you cannot change its value:
+#### Declaring constant variable - you cannot change its value:
 ```js script 
 const price = 40;
 ```
-Usage of ```var``` - not recommended to use:
+#### Usage of ```var``` - not recommended to use:
 
 ```js script 
 // error occures - declaring variable after statement
@@ -68,7 +66,7 @@ let name = 'Yana';
 let greeting = `Hello ${name}`;
 ```
 
-Creating an object:
+### Creating an object:
 ```js script 
 let person = {
     firstName: 'Yana',
@@ -78,14 +76,14 @@ let person = {
 showMessage(person.firstName);
 ```
 
-if() Statement
+#### ```if()``` Statement
 
 ```js script 
 if(5>2){
     console.log('Yes'); // will be written in console
 }
 ```
-if() else Statement
+#### ```if() else```  Statement
 ```js script 
 if(5>25){
    showMessage('true');
@@ -100,8 +98,8 @@ else{
 ```
 
 
-```!==``` - not equal to !
-```===``` - equal sign
+**```!==```** - not equal to !
+**```===```** - equal sign
 ```
 (1 === '1')  // false, use when compare different types
 (1 !== '1') // false
@@ -109,7 +107,7 @@ else{
 (1 == '1') // true - because types are converted
 (1 != '1') //false
 ```
-The Ternary Operator
+### The Ternary Operator
 ```js script 
 // condition ? true-statement : false-statement
 
@@ -119,7 +117,7 @@ showMessage(message); //expensive
 
 It is not possible to access a variable created in a block of code but it is possible with ```var``` - not recommended!
 
-for(Loop)
+#### ```for()```Loop
 ```js script 
 for (let i = 0; i < 3; i++){
     console.log(i);
@@ -127,7 +125,7 @@ for (let i = 0; i < 3; i++){
 //0 1 2
 ```
 
-do ... while() Loop - makes sure the loop executes at least once
+#### ```do ... while()``` Loop - makes sure the loop executes at least once
 ```js script 
 let count = 1;
 do {
@@ -137,7 +135,7 @@ do {
 // 1 2 3 4
 ```
 
-## Functions
+### Functions
 Function declaration
 ```js script 
 function showMessage {
@@ -168,7 +166,7 @@ function showMessage(message1, message2){
 }
 showMessage('First',  'Second');
 ```
-Return
+#### Return
 ```js script 
 function getSecretCode(value){
     let code = value * 42;
@@ -176,7 +174,7 @@ function getSecretCode(value){
 }
 console.log(getSecretCode(2)); //84
 ```
-## Object properties
+### Object properties
 ```js script 
 let mySymbol = Symbol(); // used to createhidden information in an object.
 
@@ -194,7 +192,7 @@ person['age'] = 44;
 showMessage(person.age); //44
 showMessage(person[mySymbol]); // secretInformation
 ```
-Adding a method to the object:
+#### Adding a method to the object:
 ```js script 
 let person = {
     name: "John",
@@ -206,9 +204,9 @@ let person = {
 };
 person.showInfo(); // in showInfo
 ```
-Use ```this.name``` if you want to access the ```name``` inside of an object.
+#### Use ```this.name``` if you want to access the ```name``` inside of an object.
 
-## Moderating the web-page buttons
+### Moderating the web-page buttons
 
 ```js script 
 const button = document.getElementById('see-review');
@@ -225,42 +223,42 @@ button.addEventListener('click', function(){
     
 });
 ```
-Before that we made some changest in ```index.html```:
+Before that we made some changes in ```index.html```:
 ```js script 
 // add an id
  <a id="see-review" class="btn btn-default">See Review</a>
  
- //add div molule
+ //add <div> molule
  
  <div id="review" class="container d-none">
             <h4>Review Title...</h4>
             <p>Review text...</p>
         </div>
 ```
-## Creating and initializing arrays
+### Creating and initializing arrays
 
 https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array
 ```js script 
 let values = [1, 2, 3]; or
 let values = Array.of(1, 2, 3);
 ``` 
-```values.push(4 ,5); // 1, 2, 3, 4, 5``` - add element to the end of the array
-```values.pop(); // 1, 2``` - remome the last element
-```values.shift(); // 2, 3``` - returns the first element of the array and after that the array contains elements without the first one
-```values.unshift('lol', 'kek'); // lol, kek, 1, 2, 3``` - puts an element to the zero position in the array
-```values.slice(1, 2); // 2``` - slice from... to except of what is in the middle
+- ```values.push(4 ,5); // 1, 2, 3, 4, 5``` - add element to the end of the array
+- ```values.pop(); // 1, 2``` - remome the last element
+- ```values.shift(); // 2, 3``` - returns the first element of the array and after that the array contains elements without the first one
+- ```values.unshift('lol', 'kek'); // lol, kek, 1, 2, 3``` - puts an element to the zero position in the array
+- ```values.slice(1, 2); // 2``` - slice from... to except of what is in the middle
 
-```values.splice(1, 1); // 1, 3``` - cut from... to
+- ```values.splice(1, 1); // 1, 3``` - cut from... to
 
-* 1st index - element you want to delete
-* 2nd index - number of items you want to delete
-* 3rd index - item you want to insert
+*1st index* - element you want to delete
+*2nd index* - number of items you want to delete
+*3rd index* - item you want to insert
 ```js script 
 const values = ['a', 'b', 'c'];
 values.splice(1, 0, 'foo');
 console.log(values); // a foo b c
 ```
-## filter()
+### ```filter()```
 ```js script 
 const values = ['a', 'b', 'c'];
 const set = values.filter(function(item){
@@ -268,7 +266,7 @@ const set = values.filter(function(item){
 });
 console.log(set); // c
 ```
-## find() 
+### ```find()``` 
 Finds *the first* item that matches the criteria, never goes further once it does.
 ```js script 
 const values = ['a', 'bbb', 'c'];
@@ -277,7 +275,7 @@ const found = values.find(function(item){
 });
 console.log(found); // bbb
 ```
-## forEach()
+### ```forEach()```
 ```js script 
 const values = ['a', 'b', 'c'];
 values.forEach(function(item) {
@@ -285,7 +283,7 @@ values.forEach(function(item) {
 });
 // a b c
 ```
-## Access elements in html code
+### Access elements in html code
 ```js script 
 const containers = document.getElementsByClassName('container'); // access all in index.html which class name is "container"
 containers[0].classList.add('d-none'); // remove the certain element from view on the web page
