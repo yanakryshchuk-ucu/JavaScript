@@ -57,7 +57,15 @@ Immediately executing the value of the expression.
 
 console.log(foo); // "foo"
 ```
-- ```var``` - attached to function, available for whole function
-- ```let``` - attached to the block of code (ie. ```for()``` loop)
+- ```var``` - variable attached to function, available for whole function
+- ```let``` - variable attached to the block of code (ie. ```for()``` loop)
+<br>
+- undefined - currently doesn't have a value
+### Hoisting
+Declaration of a variable or function are "moved to the top" because at first while compiling, compiler is searching for declarations. <br>
+**Mutual recursion** - 2 or more functions are calling each other. It is not possible without hoisting because one function is always declared after another.
+> Everything is a *reference*!
+
+
 
 
