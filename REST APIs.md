@@ -1,6 +1,6 @@
 # JavaScript REST APIs: Getting Started
 
-### Creating a responsive server
+## Creating an express responsive server
 ```javascript
 // bring in the express server and create application
 // the require() function resolves libraries and modules in the Node search path (usually \node_modules).
@@ -48,3 +48,20 @@ $ npm start
 In postman we make a GET Request to pur server ie ```http://localhost:5000/api/``` and **Send** it. <br>
 Each time after we make changes in our ```index.js``` file and press **Send**, the output on the server will change. 
 
+## Retrieve and search for data using REST API Methods
+### Create array of data to return
+
+```javascript
+// *******NEW******* //
+let pies = [
+    {"id": 1, "name": "Apple"},
+    {"id": 2, "name": "Cherry"},
+    {"id": 3, "name": "Peach"}
+]; 
+
+router.get('/', function(req, res, next){ // request-response-next objects
+    // *******NEW CHANGES******* //
+    res.send(pies);
+});
+```
+After we refresh server, we see there new changes in the output.
