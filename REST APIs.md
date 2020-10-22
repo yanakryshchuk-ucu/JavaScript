@@ -81,7 +81,7 @@ res.status(200).json({ // passing json object
 ```
 ### Create a module for a data
 We created a new folser *repos* and *pieRepo.js* inside of it.
-```jvascript
+```javascript
 let pieRepo = {
     get: function() {
         return [
@@ -131,7 +131,7 @@ let pieRepo = {
 module.exports = pieRepo;
 ```
 In *index.js* we get rid of ```let pies = pieRepo.get();```. Then we modify blocks:
-```
+```javascript
 router.get('/', function(req, res, next){ // request-response-next objects
     // *******NEW CHANGES******* //
     pieRepo.get(function(data){
@@ -146,5 +146,89 @@ router.get('/', function(req, res, next){ // request-response-next objects
     });
 });
 ```
-### Get a single piece of data
+> **POST** - inserting data <br>
+**PUT** - updating data <br>
+**DELETE** - deleting data <br>
+**PATCH** - patching data <br>
+### Add ```insert()``` and ```post()``` method to pieRepo.js
+```javascript
+pieRepo.insert(req.body, function(data){
+    ...
+});
+```
+### Call REST API Methods from an HTML Page
+```javascript
+
+// create a new object of XML http request
+let req = new XMLHttpRequest();
+
+// assign a function which will be called when the state changes (after you perform some action)
+req.onreadystatechange = function(){
+    // check reasyState property to see what the status is
+    if(this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        // if status = 200, we are ready to get the data
+        let response = SON.parse(this.response);
+
+        // read properties from json envelope
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.data);
+    }
+};
+
+// say what call of call we are making (in this case - GET)
+req.open("GET", "http://localhost:5001/api");
+// once we do send - we are waiting for onreadystatechange function to happen
+req.send();
+```
+#### Create HTML page to call REST API
+We created *index.html* file in new directory.
+```javascript
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pie Sample</title>
+</head>
+
+<body>
+    <h1>Pie Sample</h1>
+
+    <button onclick="getAllPies();">Get All Pies</button>
+
+    <script>
+        'use strict';
+        const URL = "http://localhost:5000/api/";
+        function getAllPies(){
+            console.log("GET ALL");
+            let req = new XMLHttpRequest();
+            req.onreadystatechange = function(){
+                if(this.readyState === XMLHttpRequest.DONE &&
+                    this.status === 200){
+                let response = JSON.parse(this.response);
+                console.log(response.status);
+                console.log(response.statusText);
+                console.log(response.data);
+                    }
+            };
+            req.open("GET", URL);
+            req.send();
+        }
+    </script>
+</body>
+
+</html>
+```
+***We got blocked on a web page***
+```
+Access to XMLHttpRequest at 'http://localhost:5000/api/' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+```
+To fix this we add some code in *index.js* 
+```javascript
+let cors = require('cors');
+
+// ...
+// Configure Cors
+app.use(cors()); // bu default if we do not add any options, it allows everybody in
+```
+> https://expressjs.com/en/resources/middleware/cors.html
 
