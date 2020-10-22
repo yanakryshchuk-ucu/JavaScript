@@ -65,3 +65,86 @@ router.get('/', function(req, res, next){ // request-response-next objects
 });
 ```
 After we refresh server, we see there new changes in the output.
+#### Sending status code to server:
+```javascript
+ res.status(200).send(pies); // 200 is a code
+```
+### Adding json envelope and passing that pack from REST API
+```javascript
+res.status(200).json({ // passing json object
+        "status": 200,
+        "statusText": "OK",
+        "message": "All pies retrieved.",
+        "data": pies
+    });
+});
+```
+### Create a module for a data
+We created a new folser *repos* and *pieRepo.js* inside of it.
+```jvascript
+let pieRepo = {
+    get: function() {
+        return [
+            {"id": 1, "name": "Apple"},
+            {"id": 2, "name": "Cherry"},
+            {"id": 3, "name": "Peach"}
+        ];
+    }
+};
+
+module.exports = pieRepo;
+```
+Then in *index.js* we add line ```let pieRepo = require('./repos/pieRepo');```. Also:
+```javascript
+// Change this module 
+let pies = [
+    {"id": 1, "name": "Apple"},
+    {"id": 2, "name": "Cherry"},
+    {"id": 3, "name": "Peach"}
+]; 
+// to
+let pies = pieRepo.get();
+```
+**Now the data is in a separate module!** (in pieRepo.js file)
+
+### Read data from a file
+We add simple json file to one more new folder *assets*. Then modify the *pieRepo.js* to
+```javascript
+// fs - built in Node module that knows how to work with reading and writing files
+let fs = require('fs');
+
+// create a filename
+const FILE_NAME = './assets/pies.json';
+
+let pieRepo = {
+    get: function(resolve, reject) {
+        fs.readFile(FILE_NAME, function(err, data){
+            if(err){
+                reject(err);
+            }
+            else{
+                resolve(JSON.parse(data));
+            }
+        });
+    }
+};
+module.exports = pieRepo;
+```
+In *index.js* we get rid of ```let pies = pieRepo.get();```. Then we modify blocks:
+```
+router.get('/', function(req, res, next){ // request-response-next objects
+    // *******NEW CHANGES******* //
+    pieRepo.get(function(data){
+    res.status(200).json({ // passing json object
+        "status": 200,
+        "statusText": "OK",
+        "message": "All pies retrieved.",
+        "data": data // PIES -> DATA
+    });
+    } function(err){
+        next(err);
+    });
+});
+```
+### Get a single piece of data
+
