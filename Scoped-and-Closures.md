@@ -92,15 +92,43 @@ In the example below only the function will be executed in strict mode:
 **Try using strict mode everywhere!!!**\
 ### Copy of the variable
 The variable created during first execution of a function is different from a variable created during second execution.
+
+### Closures in Callbacks
+Execution with timeout
 ```javascript
+var a = 10;
+var fn = function() {
+  console.log(a);
+}
+ // wait for 1 second
+ setTimeout(fn, 1000); // (parameter we need to execute, time in miliseconds)
+ 
+console.log("Done");
 
+// Done
+// 10 (in 1 second after Done)
 ```
+```javascript
+var i;
+for (i=0;i<10;i++){
+  (function(current){
+  setTimeout(function(){
+  console.log(current);
+  }, 2000);
+})(i);
+}
 
-
-
-
-
-
+// 0
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+// 8
+// 9
+```
 
 
 
