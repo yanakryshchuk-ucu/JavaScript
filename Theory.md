@@ -17,7 +17,7 @@ var bar = function(){
 foo();
 bar();
 ```
-### Scopes
+## Scopes
 A scope dictates a portion of the program where a particular variable is accessible when a particular variable makes sense. 
 If the variable in a particular scope is accessed outside the scope, it doesn't exists.
 
@@ -65,9 +65,36 @@ allocateDepartment();
 console.log(department); // RUNTIME ERROR. It is not available outside the function, 
                          // because the function created the scope.
 ```
-However **Whatever is available outside the function, is available inside !**
+However **Whatever is available outside the function, is available inside !**\
+## `"use strict"`
+We use strict mode to prevent from being created variables when you do write operation on undeclared variable.\
+Example:
+```javascript
+var myName = "";
+myName = "Yana";
 
+// "Yana"
+```
+```javascript
+"use strict";
+var myName = "";
+myName = "Yana";
 
+// ReferenceError: undeclared variable myName
+```
+In the example below only the function will be executed in strict mode:
+```javascriptode() {
+  "use strict";
+  var myName = "";
+  myName = "Yana";
+}
+```
+**Try using strict mode everywhere!!!**\
+### Copy of the variable
+The variable created during first execution of a function is different from a variable created during second execution.
+```javascript
+
+```
 
 
 
